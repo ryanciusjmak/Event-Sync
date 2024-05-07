@@ -156,7 +156,46 @@
   #event-create-container textarea {
     font-size: 12px;
   }
-  
+
+  /* Event page */
+  #image-container,
+#info-container {
+  margin-top: 40px;
+}
+
+#image-container img {
+  border-radius: 10px;
+}
+
+#info-container h1 {
+  font-size: 36px;
+  font-weight: 900;
+}
+
+#info-container p {
+  margin: 0;
+  font-size: 16px;
+  display: flex;
+}
+
+#info-container p ion-icon {
+  margin-right: 10px;
+}
+
+#info-container h3,
+#description-container h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#info-container ion-icon {
+  font-size: 22px;
+  color: #007EFF;
+}
+
+#info-container #event-submit {
+  margin: 20px 0;
+}
   /* footer */
   footer {
     text-align: center;
