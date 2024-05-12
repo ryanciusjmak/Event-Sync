@@ -14,4 +14,7 @@ class Event extends Model
     ];
 
     // Outros métodos do modelo aqui...
+    protected $casts = [
+        'items' => 'array'
+    ];
 }

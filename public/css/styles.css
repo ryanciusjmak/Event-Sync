@@ -176,6 +176,7 @@
   margin: 0;
   font-size: 16px;
   display: flex;
+  margin-top: 5px;
 }
 
 #info-container p ion-icon {
@@ -195,6 +196,20 @@
 
 #info-container #event-submit {
   margin: 20px 0;
+}
+
+#items-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#items-list li {
+  display: flex;
+  margin-top: 5px;
+}
+
+#items-list li ion-icon {
+  margin-right: 10px;
 }
   /* footer */
   footer {

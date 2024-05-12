@@ -27,8 +27,26 @@
                 <textarea class="form-control" name="description" id="description" placeholder="Description of the event"></textarea>
             </div>
             <div class="form-group">
+                <label class="mt-3" for="description">add infrastructure items</label>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" value="Chairs"> Chairs
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" value="Stage"> Stage
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" value="Open Food"> Open Food
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" value="Free beer"> Free beer
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="items[]" value="Gifts"> Gifts
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="mt-3" for="image">Add Photo</label>
-                <input type="file" class="form-control-file mt-3" id="image" name="image">
+                <input type="file" class="form-control-file mt-3" id="image" name="image"> 
             </div>
             <input type="submit" class="btn btn-primary mt-3" value="Create Event">
         </form>
