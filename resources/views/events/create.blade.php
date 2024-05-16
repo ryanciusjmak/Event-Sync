@@ -16,6 +16,10 @@
                 <input type="text" class="form-control" id="city" name="city" placeholder="Event's place">
             </div>
             <div class="form-group">
+                <label class="mt-3" for="date">Date:</label>
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
+            <div class="form-group">
                 <label class="mt-3" for="private">Is the event private?</label>
                 <select name="private" id="private" class="form-control">
                     <option value="0">NO</option>
@@ -27,7 +31,7 @@
                 <textarea class="form-control" name="description" id="description" placeholder="Description of the event"></textarea>
             </div>
             <div class="form-group">
-                <label class="mt-3" for="description">add infrastructure items</label>
+                <label class="mt-3" for="description">Add Infrastructure Items</label>
                 <div class="form-group">
                     <input type="checkbox" name="items[]" value="Chairs"> Chairs
                 </div>
