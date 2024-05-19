@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title')</title>
         <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/responsive.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="shortcut icon" href="/public/img/favicon.png" type="image/x-icon">
@@ -13,10 +14,10 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar-expand-lg">
                 <div class="collapse navbar-collapse" id="navbar">
                     <a href="" class="navbar-brand">
-                        <img src="/img/event.png">
+                        <img src="/img/evento.png">
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
