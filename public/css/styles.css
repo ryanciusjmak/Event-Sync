@@ -148,6 +148,10 @@ header {
   display: flex;
 }
 
+#cards-container p{
+  color: #ffffff;
+}
+
 #events-container .card {
   flex: 1 1 calc(25% - 1%);
   max-width: calc(25% - 1%);
@@ -213,6 +217,10 @@ header {
 
 #event-create-container input::placeholder {
   color: rgb(255, 255, 255);
+}
+
+#event-create-container textarea::placeholder {
+  color: #ffffff;
 }
 
 #event-create-container label {

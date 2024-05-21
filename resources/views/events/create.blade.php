@@ -20,6 +20,10 @@
                 <input type="date" class="form-control" id="date" name="date">
             </div>
             <div class="form-group">
+                <label class="mt-3" for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Event Description" required></textarea>
+            </div>
+            <div class="form-group">
                 <label class="mt-3" for="private">Is the event private?</label>
                 <select name="private" id="private" class="form-control">
                     <option value="0">NO</option>
