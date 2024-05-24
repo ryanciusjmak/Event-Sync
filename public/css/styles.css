@@ -14,8 +14,9 @@ body {
 }
 
 header {
-  color: #ffffff;
+  color: #ff0000;
   text-align: center;
+  border-bottom: 1px solid rgb(255, 0, 0);
 }
 
 .row {
@@ -123,21 +124,16 @@ header {
   background-color: #1f1f1f;
 }
 
-
-#event-create-container {
-  color: #ffffff;
-  box-shadow:  1px 1px 1px 3px  rgba(255, 0, 0, 0.3);
-  border-radius: 20px;
-}
-
-#event-create-container label {
+#events-container p {
   color: #ffffff;
 }
+
 
 #events-container h2 {
   margin-bottom: 10px;
   color: #ff0000;
 }
+
 
 #events-container .subtitle {
   color: #ffffff;
@@ -213,6 +209,16 @@ header {
 #event-create-container {
   padding: 30px;
   background-color: #121212;
+}
+
+#event-create-container {
+  color: #ffffff;
+  box-shadow:  1px 1px 1px 3px  rgba(255, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+#event-create-container label {
+  color: #ffffff;
 }
 
 #event-create-container input::placeholder {
@@ -326,6 +332,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
+  border-top: 1px solid rgb(255, 0, 0);
 }
 
 footer p {
