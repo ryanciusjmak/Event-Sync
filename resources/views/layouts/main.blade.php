@@ -20,7 +20,7 @@
         <nav class="navbar-expand-lg">
             <div class="collapse navbar-collapse" id="navbar">
                 <a href="" class="navbar-brand">
-                    <img src="/img/evento.png">
+                    <img src="/img/frozen-orb-svgrepo-com.svg">
                 </a>
                 <ul class="navbar-nav">
                     <li class="nav-item">

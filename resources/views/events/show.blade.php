@@ -12,7 +12,7 @@
             <h1>{{ $event->title }}</h1>
             <p class="event-city"><ion-icon name="location"></ion-icon> {{ $event->city }}</p>
             <p class="events-participants"><ion-icon name="people"></ion-icon> X Participants</p>
-            <p class="event-owner"><ion-icon name="star"></ion-icon> Event Owner</p>
+            <p class="event-owner"><ion-icon name="star"></ion-icon> {{$eventOwner['name']}}</p>
             <a href="#" class="btn btn-primary" id="event-submit">Confirm Attendance</a>
             <h3>The event has</h3>
             @if ($event->items)
