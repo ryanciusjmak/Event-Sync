@@ -21,10 +21,10 @@
             <tbody>
                 @foreach ($events as $event)
                     <tr>
-                        <th scope="row">{{ $loop->index + 1 }}</th>
+                        <td scropt="row">{{ $loop->index + 1 }}</td>
                         <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
-                        <td> <!-- Aqui você pode adicionar o número de participantes, se houver --> </td>
-                        <td> <!-- Aqui você pode adicionar ações, como editar ou deletar --> </td>
+                        <td>0</td>
+                        <td><a href="#">Edit</a> <a href="#">Delete</a></td>
                     </tr>
                 @endforeach
             </tbody>
