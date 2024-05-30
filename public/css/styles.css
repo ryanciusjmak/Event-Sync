@@ -294,6 +294,10 @@ header {
   color: #ff0000;
 }
 
+#description-container {
+  margin-top: 30px;
+}
+
 #description-container p {
   color: #ffffff;
 }
@@ -322,6 +326,13 @@ header {
   margin-right: 10px;
   color: #ff0000;
 }
+
+/* dashboard */
+
+.dashboard-title-container {
+  color: #ffffff;
+}
+
 
 /* footer */
 footer {
