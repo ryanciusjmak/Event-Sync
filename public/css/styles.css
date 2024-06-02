@@ -343,6 +343,17 @@ header {
   display: inline-block;
 }
 
+.dashboard-events-container p {
+    color: #ffffff;
+}
+
+.dashboard-events-container p a {
+  color: #ff0000;
+  text-decoration:none;
+  font-weight: bold;
+  
+}
+
 
 /* footer */
 footer {

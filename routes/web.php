@@ -29,9 +29,7 @@ Route::get('/products', function () {
     return view('products');
 });
 
-Route::get('/products/{id}', function ($id) {
-    return view('product', ['id' => $id]);
-});
+
 
 Route::get('/dashboard', [EventController::class, 'dashboard'])
     ->middleware([
@@ -39,4 +37,6 @@ Route::get('/dashboard', [EventController::class, 'dashboard'])
         config('jetstream.auth_session'),
         'verified',
     ]);
+
+
 
