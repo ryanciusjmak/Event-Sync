@@ -19,16 +19,8 @@ Route::get('/events/create', [EventController::class, 'create'])->middleware('au
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/register', [EventController::class, 'register']);
-Route::delete('/events/{id}', [EventController::class, 'destroy']);
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/products', function () {
-    return view('products');
-});
-
+Route::delete('/events/{id}', [EventController::class, 'destroy'])->middleware('auth');
+Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('auth');
 
 
 Route::get('/dashboard', [EventController::class, 'dashboard'])
@@ -38,5 +30,8 @@ Route::get('/dashboard', [EventController::class, 'dashboard'])
         'verified',
     ]);
 
+    Route::fallback(function () {
+        return response()->view('events.erro', [], 404);
+    });
 
 

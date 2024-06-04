@@ -333,10 +333,16 @@ header {
   color: #ffffff;
   margin-top: 30px;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .dashboard-events-container th {
     width: 25%;
+    border-width: 2px;
+}
+
+.dashboard-events-container tr th {
+  color: white;
 }
 
 .dashboard-events-container form {
@@ -351,8 +357,36 @@ header {
   color: #ff0000;
   text-decoration:none;
   font-weight: bold;
-  
 }
+
+.dashboard-events-container tr td a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.dashboard-events-container tr td {
+  border-width: 2px;
+}
+
+.custom-mid {
+  text-align: center;
+    vertical-align: middle;
+}
+
+table.custom-table {
+  background-color:#121212 !important;
+  border: 2px solid rgba(255, 0, 0, 0.3); 
+  border-collapse: collapse;
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+table.custom-table th,
+table.custom-table td {
+  background-color:#121212 !important;
+  color: #ffffff;
+}
+
+
 
 
 /* footer */

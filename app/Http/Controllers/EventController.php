@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventController extends Controller
 {
-    
     public function index() {
-
         $search = request('search');
     
-        if($search) {
+        if ($search) {
             $events = Event::where('title', 'like', '%'.$search.'%')->get();
         } else {
             $events = Event::all();
@@ -34,15 +33,19 @@ class EventController extends Controller
     }
 
     public function show($id) {
-        $event = Event::findOrFail($id);
+        try {
+            $event = Event::findOrFail($id);
+            $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
-
-        return view('events.show',['event' => $event, 'eventOwner' => $eventOwner]);
+            return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
+        } catch (ModelNotFoundException $e) {
+            return response()->view('events.erro', [], 404);
+        } catch (NotFoundHttpException $e) {
+            return response()->view('events.erro', [], 404);
+        }
     }
 
     public function store(Request $request) {
-
         $event = new Event;
 
         $event->title = $request->title;
@@ -53,18 +56,13 @@ class EventController extends Controller
         $event->items = $request->items;
 
         // Image Upload
-        if($request->hasFile('image') && $request->file('image')->isValid()) {
-
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
-
             $extension = $requestImage->extension();
-
             $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
             $requestImage->move(public_path('img/events'), $imageName);
-
             $event->image = $imageName;
-
         }
 
         $user = auth()->user();
@@ -73,21 +71,34 @@ class EventController extends Controller
         $event->save();
 
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
-
     }
-
 
     public function dashboard() {
         $user = auth()->user();
-
         $events = $user->events;
 
         return view('events.dashboard', ['events' => $events]);
     }
 
     public function destroy($id) {
-        Event::findOrFail($id)->delete();
-        return redirect('/dashboard')->with('Event deleted successfully!');
+        try {
+            Event::findOrFail($id)->delete();
+            return redirect('/dashboard')->with('msg', 'Event deleted successfully!');
+        } catch (ModelNotFoundException $e) {
+            return response()->view('events.erro', [], 404);
+        } catch (NotFoundHttpException $e) {
+            return response()->view('events.erro', [], 404);
+        }
     }
 
+    public function edit($id) {
+        try {
+            $event = Event::findOrFail($id);
+            return view('events.edit', ['event' => $event]);
+        } catch (ModelNotFoundException $e) {
+            return response()->view('events.erro', [], 404);
+        } catch (NotFoundHttpException $e) {
+            return response()->view('events.erro', [], 404);
+        }
+    }
 }

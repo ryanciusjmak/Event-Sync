@@ -7,9 +7,9 @@
 <div class="col-md-10 offset-md-1 dashboard-title-container">
     <h1>My Events</h1>
 </div>
-<div class="col-md-10 offset-md-1 dashboard-events-container">
+<div class="col-md-8 offset-md-2 dashboard-events-container">
     @if (count($events) > 0)
-    <table class="table">
+    <table class="table custom-table">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -24,8 +24,8 @@
                 <td scropt="row">{{ $loop->index + 1 }}</td>
                 <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
                 <td>0</td>
-                <td>
-                    <a href="#" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                <td class="custom-mid">
+                    <a href="/events/edit/{{$event->id}}" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>Edit</a>
                     <form action="/events/{{$event->id}}" method="post">
                         @csrf
                         @method('DELETE')
