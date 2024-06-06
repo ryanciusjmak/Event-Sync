@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Editing:' . $event->title)
+@section('title', 'Editing: ' . $event->title)
 
 @section('content')
     <div id="event-create-container" class="col-md-6 offset-md-3 mt-5">
@@ -10,25 +10,25 @@
             @method('PUT')
             <div class="form-group">
                 <label class="mt-3" for="title">Event:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Event Name" value=""{{$event->title}}>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Event Name" value="{{$event->title}}">
             </div>
             <div class="form-group">
                 <label class="mt-3" for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Event's place">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Event's place" value="{{$event->city}}">
             </div>
             <div class="form-group">
                 <label class="mt-3" for="date">Date:</label>
-                <input type="date" class="form-control" id="date" name="date">
+                <input type="date" class="form-control" id="date" name="date" value="{{date('Y-m-d', strtotime($event->date));}}">
             </div>
             <div class="form-group">
                 <label class="mt-3" for="description">Description:</label>
-                <textarea class="form-control" id="description" name="description" placeholder="Event Description" required></textarea>
+                <textarea class="form-control" id="description" name="description" placeholder="Event Description" required>{{$event->description}}</textarea>
             </div>
             <div class="form-group">
                 <label class="mt-3" for="private">Is the event private?</label>
                 <select name="private" id="private" class="form-control">
                     <option value="0">NO</option>
-                    <option value="1">YES</option>
+                    <option value="1" {{$event->private == 1 ? "selected='selected'" : ""}}>YES</option>
                 </select>
             </div>
             <div class="form-group">
@@ -72,7 +72,7 @@
                 <img src="/img/events/{{$event->image}}" alt="{{$event->title}}" class="img-preview">
             </div>
             <div class="text-center"> 
-                <input type="submit" class="btn btn-primary mt-3" value="Create Event" id="create-button">
+                <input type="submit" class="btn btn-primary mt-3" value="Edit Event" id="create-button">
             </div>
         </form>
     </div>

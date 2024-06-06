@@ -1,1 +1,1 @@
-<img src="/img/frozen-orb-svgrepo-com.svg">
+<img src="/img/frozen-orb-svgrepo-com.svg" width="200px">

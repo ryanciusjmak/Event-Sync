@@ -13,6 +13,7 @@
             <p class="event-city"><ion-icon name="location"></ion-icon> {{ $event->city }}</p>
             <p class="events-participants"><ion-icon name="people"></ion-icon> X Participants</p>
             <p class="event-owner"><ion-icon name="star"></ion-icon> {{$eventOwner['name']}}</p>
+            <p><ion-icon name="{{ $event->private ? 'lock-closed' : 'lock-open' }}"></ion-icon> {{ $event->private ? 'This event is private.' : 'This event is public.' }}</p>
             <a href="#" class="btn btn-primary" id="event-submit">Confirm Attendance</a>
             <h3>The event has</h3>
             @if ($event->items)

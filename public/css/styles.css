@@ -327,7 +327,7 @@ header {
   color: #ff0000;
 }
 
-/* dashboard */
+/* dashboard page */
 
 .dashboard-title-container {
   color: #ffffff;
@@ -384,6 +384,13 @@ table.custom-table th,
 table.custom-table td {
   background-color:#121212 !important;
   color: #ffffff;
+}
+
+
+/*edit page*/
+.img-preview {
+  width: 220px;
+  margin-left: 20%;
 }
 
 

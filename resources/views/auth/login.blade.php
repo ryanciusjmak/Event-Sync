@@ -1,3 +1,5 @@
+@section('title', 'Login - ' . config('app.name', 'Event Sync'))
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
