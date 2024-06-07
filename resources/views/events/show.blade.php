@@ -10,11 +10,14 @@
         </div>
         <div id="info-container" class="col-md-6">
             <h1>{{ $event->title }}</h1>
-            <p class="event-city"><ion-icon name="location"></ion-icon> {{ $event->city }}</p>
-            <p class="events-participants"><ion-icon name="people"></ion-icon> X Participants</p>
-            <p class="event-owner"><ion-icon name="star"></ion-icon> {{$eventOwner['name']}}</p>
+            <p class="event-city"><ion-icon name="location"></ion-icon>Location: {{ $event->city }}</p>
+            <p class="events-participants"><ion-icon name="people"></ion-icon>Participants:  {{count($event->users)}}</p>
+            <p class="event-owner"><ion-icon name="star"></ion-icon> EventOwner:   {{$eventOwner['name']}}</p>
             <p><ion-icon name="{{ $event->private ? 'lock-closed' : 'lock-open' }}"></ion-icon> {{ $event->private ? 'This event is private.' : 'This event is public.' }}</p>
-            <a href="#" class="btn btn-primary" id="event-submit">Confirm Attendance</a>
+            <form action="/events/join/{{$event->id}}" method="POST">
+                @csrf
+                <a href="#" class="btn btn-primary" id="event-submit" onclick="event.preventDefault(); this.closest('form').submit();">Confirm Attendance</a>
+            </form>
             <h3>The event has</h3>
             @if ($event->items)
             <ul id="items-list">

@@ -35,4 +35,6 @@ Route::get('/dashboard', [EventController::class, 'dashboard'])
         return response()->view('events.erro', [], 404);
     });
 
+    Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
+
 
