@@ -78,7 +78,9 @@ class EventController extends Controller
         $user = auth()->user();
         $events = $user->events;
 
-        return view('events.dashboard', ['events' => $events]);
+        $eventsAsParticipant = $user->eventsAsParticipant;
+
+        return view('events.dashboard', ['events' => $events, 'eventsasparticipant' => $eventsAsParticipant] );
     }
 
     public function destroy($id) {
@@ -95,6 +97,13 @@ class EventController extends Controller
     public function edit($id) {
         try {
             $event = Event::findOrFail($id);
+    
+            $user = auth()->user();
+    
+            if ($user->id != $event->user_id) {
+                return redirect('/dashboard');
+            }
+    
             return view('events.edit', ['event' => $event]);
         } catch (ModelNotFoundException $e) {
             return response()->view('events.erro', [], 404);
@@ -102,6 +111,8 @@ class EventController extends Controller
             return response()->view('events.erro', [], 404);
         }
     }
+    
+
 
     public function update(Request $request) {
 

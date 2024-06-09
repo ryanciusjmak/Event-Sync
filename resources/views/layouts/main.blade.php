@@ -16,6 +16,21 @@
 </head>
 
 <body>
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(window).on('load', function() {
+                $('#loading').fadeOut();
+            });
+
+            $('form').on('submit', function() {
+                $('#loading').fadeIn();
+            });
+        });
+    </script>
     <header>
         <nav class="navbar-expand-lg">
             <div class="collapse navbar-collapse" id="navbar">

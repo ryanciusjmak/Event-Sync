@@ -266,8 +266,12 @@ header {
 }
 
 #image-container img {
-  border-radius: 10px;
-}
+    width: 700px; 
+    height: 400px; 
+    object-fit: cover; 
+    border-radius: 10px;
+  }
+
 
 #info-container h1 {
   font-size: 36px;
@@ -296,6 +300,10 @@ header {
 
 #description-container {
   margin-top: 30px;
+  word-wrap: break-word; 
+  word-break: break-word; 
+  white-space: normal;
+  width: 45%;  
 }
 
 #description-container p {
@@ -336,6 +344,11 @@ header {
   text-align: center;
 }
 
+.dashboard-title-container h1 {
+    margin-top: 10px;
+    padding-top: 20px;
+}
+
 .dashboard-events-container th {
     width: 25%;
     border-width: 2px;
@@ -366,6 +379,11 @@ header {
 
 .dashboard-events-container tr td {
   border-width: 2px;
+}
+
+.dashboard-events-container tr td button ion-icon{
+    font-size: 16px;
+    
 }
 
 .custom-mid {
@@ -410,4 +428,31 @@ footer {
 
 footer p {
   margin-bottom: 0;
+}
+
+.loading-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 12px solid #000000;
+  border-top: 12px solid #ff0000;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
