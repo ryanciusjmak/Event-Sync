@@ -36,9 +36,19 @@ class EventController extends Controller
     public function show($id) {
         try {
             $event = Event::findOrFail($id);
+            $user = auth()->user();
+            $hasUserJoined = false;
+            if ($user) {
+                $userEvents = $user->eventsAsParticipant->toArray();
+                foreach($userEvents as $userEvent){
+                    if($userEvent['id'] == $id){
+                        $hasUserJoined = true;
+                    }
+                }
+            }
             $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-            return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
+            return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner, 'hasUserJoined' => $hasUserJoined]);
         } catch (ModelNotFoundException $e) {
             return response()->view('events.erro', [], 404);
         } catch (NotFoundHttpException $e) {
@@ -141,5 +151,13 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
 
         return redirect('/dashboard')->with('msg', 'Your presence is confirmed at the event ' . $event->title);
+    }
+
+    public function leaveEvent($id) {
+        $user = auth()->user();
+        $event = Event::findOrFail($id);
+        $user->eventsAsParticipant()->detach($id);
+
+        return redirect('/dashboard')->with('msg', 'You successfully left the event ' . $event->title);
     }
 }

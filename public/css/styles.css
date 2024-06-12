@@ -49,6 +49,21 @@ header {
   padding: 10px;
 }
 
+#info-container .already-joined-msg{
+  margin: 15px 0;
+  background-color: #ff0000;
+  border: 1px solid #cebbbb;
+  border-radius: 6px;
+  padding: 10px;
+  width: 230px;
+}
+
+#info-container .already-joined-msg:hover{
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.5);
+}
+
 /* navbar */
 #navbar img {
   width: 40px;
@@ -283,12 +298,12 @@ header {
   margin: 0;
   font-size: 16px;
   display: flex;
-  margin-top: 5px;
+  margin-top: 8px;
   color: #ffffff;
 }
 
 #info-container p ion-icon {
-  margin-right: 10px;
+  margin-right: 12px;
 }
 
 #info-container h3,
@@ -430,6 +445,8 @@ footer p {
   margin-bottom: 0;
 }
 
+
+/* view loading */
 .loading-overlay {
   position: fixed;
   z-index: 9999;
