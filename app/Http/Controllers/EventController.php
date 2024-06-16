@@ -57,6 +57,15 @@ class EventController extends Controller
     }
 
     public function store(Request $request) {
+
+        $request->validate([
+            'title' => 'required',
+            'date' => 'required',
+            'city' => 'required',
+            'private' => 'required',
+            'description' => 'required',
+        ]);
+
         $event = new Event;
 
         $event->title = $request->title;
@@ -74,7 +83,11 @@ class EventController extends Controller
 
             $requestImage->move(public_path('img/events'), $imageName);
             $event->image = $imageName;
+        } else {
+            
+            $event->image = 'default_image.jpg';
         }
+        
 
         $user = auth()->user();
         $event->user_id = $user->id;
@@ -136,6 +149,13 @@ class EventController extends Controller
 
             $requestImage->move(public_path('img/events'), $imageName);
             $data['image'] = $imageName;
+        } else {
+            // Verifica se a imagem já existe no evento
+            $existingEvent = Event::findOrFail($request->id);
+            if (!$existingEvent->image) {
+                // Define uma imagem padrão
+                $data['image'] = 'default_image.jpg';
+            }
         }
 
         Event::findOrFail($request->id)->update($data);

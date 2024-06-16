@@ -9,15 +9,15 @@
             @csrf
             <div class="form-group">
                 <label class="mt-3" for="title">Event:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Event Name">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Event Name" required>
             </div>
             <div class="form-group">
                 <label class="mt-3" for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Event's place">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Event's place" required>
             </div>
             <div class="form-group">
                 <label class="mt-3" for="date">Date:</label>
-                <input type="date" class="form-control" id="date" name="date">
+                <input type="date" class="form-control" id="date" name="date" required>
             </div>
             <div class="form-group">
                 <label class="mt-3" for="description">Description:</label>
@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-5">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="items[]" value="Chairs" id="chairs">
+                <input class="form-check-input" type="checkbox" name="items[]" value="Chairs" id="chairs" required>
                 <label class="form-check-label ms-2" for="chairs">Chairs</label>
             </div>
         </div>
@@ -74,4 +74,8 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/disableSubmit.js') }}"></script>
 @endsection
