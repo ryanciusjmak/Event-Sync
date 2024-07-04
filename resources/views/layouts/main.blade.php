@@ -47,6 +47,9 @@
                     <li class="nav-item">
                         <a href="/events/create" class="nav-link">Create Events</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/events/contact" class="nav-link">Contact</a>
+                    </li>
                     @auth
                     <li class="nav-item">
                         <a href="/dashboard" class="nav-link">My events</a>

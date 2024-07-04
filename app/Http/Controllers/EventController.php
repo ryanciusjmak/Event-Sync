@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use App\Mail\Contact;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Livewire\Attributes\Title;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -32,6 +34,11 @@ class EventController extends Controller
     public function create() {
         return view('events.create');
     }
+
+    public function contact() {
+        return view('events.contact');
+    }
+
 
     public function show($id) {
         try {
@@ -134,8 +141,6 @@ class EventController extends Controller
             return response()->view('events.erro', [], 404);
         }
     }
-    
-
 
     public function update(Request $request) {
 

@@ -70,16 +70,36 @@ header {
 }
 
 #navbar {
-  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #121212;
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 
-#navbar a {
-  font-size: 16px;
-  color: #ffffff;
+#navbar .navbar-brand {
+  margin-left: 20px;
+}
+
+#navbar ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+#navbar ul li {
+  margin: 0 25px;
+}
+
+#navbar ul li a {
+  color: white;
   text-decoration: none;
-  margin: 0 15px;
+  font-size: 16px;
 }
 
 #navbar a:hover {
@@ -426,6 +446,108 @@ table.custom-table td {
   margin-left: 20%;
 }
 
+
+/*contact page*/ 
+.contact-container {
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.contact-header h1 {
+  font-size: 3em;
+  color: #ffd700;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.contact-info, .contact-form {
+  flex: 1;
+  max-width: 600px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.contact-info h2 {
+  font-size: 1.5em;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  font-size: 1em;
+  margin: 10px 0;
+  color: #ccc;
+}
+
+.contact-info ion-icon {
+  margin-right: 10px;
+  vertical-align: middle;
+  color: #ffd700;
+}
+
+.contact-info a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.contact-form {
+  text-align: left;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input, .contact-form textarea {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+  font-size: 1em;
+}
+
+.contact-form input::placeholder, .contact-form textarea::placeholder {
+  color: #aaa;
+}
+
+.contact-form .terms {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.contact-form .terms input {
+  margin-right: 10px;
+}
+
+.contact-form button {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #e60000;
+}
 
 
 

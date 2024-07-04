@@ -13,6 +13,51 @@
     }
 }
 
+@media (max-width: 991px) {
+    header, 
+    header nav,
+    header .navbar-expand-lg {
+        display: block !important; 
+        height: auto !important; 
+    }
+
+    #navbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #121212;
+        padding: 10px 0;
+        height: auto !important; 
+    }
+
+
+    #navbar .navbar-brand {
+        margin-bottom: 0;
+        margin-left: 25px;
+    }
+
+    #navbar ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    #navbar ul li {
+        margin: 0 10px;
+    }
+
+    #navbar ul li a {
+        
+        color: white; 
+        font-size: 13px;
+    }
+}
+
 @media (max-width: 768px) {
     #events-container .card {
         flex: 1 1 calc(50% - 1%); /* 2 cards por linha em telas menores */
