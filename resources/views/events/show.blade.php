@@ -11,11 +11,11 @@
             <div id="info-container" class="col-md-6">
                 <h1>{{ $event->title }}</h1>
                 <p class="event-city"><ion-icon name="location"></ion-icon>Location: {{ $event->city }}</p>
-                <p class="events-participants"><ion-icon name="people"></ion-icon>Participants: {{ count($event->users) }}
-                </p>
+                <p class="events-participants"><ion-icon name="people"></ion-icon>Participants: {{ count($event->users) }}</p>
                 <p class="event-owner"><ion-icon name="star"></ion-icon> EventOwner: {{ $eventOwner['name'] }}</p>
                 <p><ion-icon name="{{ $event->private ? 'lock-closed' : 'lock-open' }}"></ion-icon>
-                    {{ $event->private ? 'This event is private.' : 'This event is public.' }}</p>
+                    {{ $event->private ? 'This event is private, buy the ticket.' : 'This event is public.' }}</p>
+                
                 @if (!$hasUserJoined)
                     <form action="/events/join/{{ $event->id }}" method="POST">
                         @csrf
@@ -25,6 +25,16 @@
                 @else
                     <p class="already-joined-msg">You are already participating!</p>
                 @endif
+                
+                @if ($event->private && !$event->free)
+                    <form action="/session" method="POST">
+                        @csrf
+                        <input type="hidden" name="total" value="8">
+                        <input type="hidden" name="productname" value="{{ $event->title }}">
+                        <button class="btn btn-primary mb-3" type="submit">Buy Ticket</button>
+                    </form>
+                @endif
+                
                 <h3>The event has:</h3>
                 @if ($event->items)
                     <ul id="items-list">
@@ -33,7 +43,6 @@
                         @endforeach
                     </ul>
                 @endif
-
             </div>
             <div class="col-md-12" id="description-container">
                 <h3>About the event:</h3>

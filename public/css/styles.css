@@ -456,7 +456,7 @@ table.custom-table td {
 
 .contact-header h1 {
   font-size: 3em;
-  color: #ffd700;
+  color: #ffffff;
 }
 
 .contact-content {
@@ -480,7 +480,7 @@ table.custom-table td {
 
 .contact-info h2 {
   font-size: 1.5em;
-  color: #ffd700;
+  color: #ff0000;
   margin-bottom: 20px;
 }
 
@@ -493,11 +493,11 @@ table.custom-table td {
 .contact-info ion-icon {
   margin-right: 10px;
   vertical-align: middle;
-  color: #ffd700;
+  color: #ff0000;
 }
 
 .contact-info a {
-  color: #ffd700;
+  color: #ff0000;
   text-decoration: none;
 }
 
