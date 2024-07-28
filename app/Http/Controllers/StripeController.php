@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\TicketPurchase;
 use App\Models\Event; // Adicione isso para acessar o modelo Event
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class StripeController extends Controller
 {
@@ -39,31 +40,31 @@ class StripeController extends Controller
     }
 
     public function success(Request $request)
-    {
-        // Pegue o ID do evento da URL de sucesso
-        $eventId = $request->query('event_id');  // Use query para pegar o parâmetro da URL
-        $userId = Auth::id();
+{
+    $eventId = $request->query('event_id');
+    $userId = Auth::id();
 
-        // Verifique se o event_id não é nulo
-        if ($eventId === null) {
-            return "Erro: O ID do evento não foi fornecido.";
-        }
-
-        // Obtenha o evento do banco de dados
-        $event = Event::find($eventId);
-
-        // Verifique se o evento existe
-        if (!$event) {
-            return "Erro: Evento não encontrado.";
-        }
-
-        // Salve a compra do ticket no banco de dados
-        TicketPurchase::create([
-            'user_id' => $userId,
-            'event_id' => $eventId,
-            'amount_paid' => $event->price, // Pegue o preço do evento
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Ticket purchased successfully!');
+    if ($eventId === null) {
+        return "Erro: O ID do evento não foi fornecido.";
     }
+
+    $event = Event::find($eventId);
+
+    if (!$event) {
+        return "Erro: Evento não encontrado.";
+    }
+
+    // Salve a compra do ticket no banco de dados
+    TicketPurchase::create([
+        'user_id' => $userId,
+        'event_id' => $eventId,
+        'amount_paid' => $event->price,
+    ]);
+
+    // Adicione o usuário ao evento
+    $user = User::find($userId);
+    $user->eventsAsParticipant()->attach($eventId);
+
+    return redirect()->route('dashboard')->with('success', 'Ticket purchased successfully!');
+}
 }

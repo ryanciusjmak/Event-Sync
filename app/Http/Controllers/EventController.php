@@ -13,42 +13,52 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $search = request('search');
-    
+
         if ($search) {
-            $events = Event::where('title', 'like', '%'.$search.'%')->get();
+            $events = Event::where('title', 'like', '%' . $search . '%')->get();
         } else {
             $events = Event::all();
         }
 
+        // Para cada evento, atualize a contagem de participantes
+        foreach ($events as $event) {
+            $event->participant_count = $event->users()->count();
+        }
+        
         $eventCount = $events->count();
-    
+
         return view('welcome', ['events' => $events, 'search' => $search, 'eventCount' => $eventCount]);
     }
 
-    public function register() {
+    public function register()
+    {
         return view('events.register');
     }
 
-    public function create() {
+    public function create()
+    {
         return view('events.create');
     }
 
-    public function contact() {
+    public function contact()
+    {
         return view('events.contact');
     }
 
 
-    public function show($id) {
+    public function show($id)
+    {
         try {
             $event = Event::findOrFail($id);
             $user = auth()->user();
             $hasUserJoined = false;
             if ($user) {
                 $userEvents = $user->eventsAsParticipant->toArray();
-                foreach($userEvents as $userEvent){
-                    if($userEvent['id'] == $id){
+                foreach ($userEvents as $userEvent) {
+                    if ($userEvent['id'] == $id) {
                         $hasUserJoined = true;
                     }
                 }
@@ -63,7 +73,8 @@ class EventController extends Controller
         }
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $request->validate([
             'title' => 'required',
@@ -93,10 +104,10 @@ class EventController extends Controller
             $requestImage->move(public_path('img/events'), $imageName);
             $event->image = $imageName;
         } else {
-            
+
             $event->image = 'default_image.jpg';
         }
-        
+
 
         $user = auth()->user();
         $event->user_id = $user->id;
@@ -106,7 +117,8 @@ class EventController extends Controller
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         $user = auth()->user();
         $events = $user->events;
 
@@ -120,7 +132,8 @@ class EventController extends Controller
         ]);
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         try {
             Event::findOrFail($id)->delete();
             return redirect('/dashboard')->with('msg', 'Event deleted successfully!');
@@ -131,16 +144,17 @@ class EventController extends Controller
         }
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         try {
             $event = Event::findOrFail($id);
-    
+
             $user = auth()->user();
-    
+
             if ($user->id != $event->user_id) {
                 return redirect('/dashboard');
             }
-    
+
             return view('events.edit', ['event' => $event]);
         } catch (ModelNotFoundException $e) {
             return response()->view('events.erro', [], 404);
@@ -149,10 +163,11 @@ class EventController extends Controller
         }
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         $data = $request->all();
-        
+
         $request->validate([
             'title' => 'required',
             'date' => 'required',
@@ -162,7 +177,7 @@ class EventController extends Controller
             'price' => 'nullable|numeric|min:0',
         ]);
 
-        
+
 
         // Image Upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -181,16 +196,17 @@ class EventController extends Controller
             }
         }
 
-         // Captura o valor do campo price
+        // Captura o valor do campo price
         $data['price'] = $request->input('price');
 
         // Atualiza o evento
         Event::findOrFail($request->id)->update($data);
 
         return redirect('/dashboard')->with('msg', 'Event edited    successfully!');
-}
+    }
 
-    public function joinEvent($id) {
+    public function joinEvent($id)
+    {
         $user = auth()->user();
 
         $user->eventsAsParticipant()->attach($id);
@@ -200,7 +216,8 @@ class EventController extends Controller
         return redirect('/dashboard')->with('msg', 'Your presence is confirmed at the event ' . $event->title);
     }
 
-    public function leaveEvent($id) {
+    public function leaveEvent($id)
+    {
         $user = auth()->user();
         $event = Event::findOrFail($id);
         $user->eventsAsParticipant()->detach($id);
