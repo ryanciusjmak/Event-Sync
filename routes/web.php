@@ -4,6 +4,7 @@ use App\Http\Controllers\SendmailController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('a
 Route::put('events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 Route::resource('email', SendmailController::class)->middleware('auth');
 
-Route::get('/dashboard', [EventController::class, 'dashboard'])
+Route::get('/dashboard', [EventController::class, 'dashboard'])->name('dashboard')
     ->middleware([
         'auth:sanctum',
         config('jetstream.auth_session'),
@@ -39,8 +40,11 @@ Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middlew
 Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->middleware('auth');
 
 
-Route::post('/session', [StripeController::class, 'session'])->name('session');
+Route::post('/session', [StripeController::class, 'session'])->name('session')->middleware('auth');
+
 Route::get('/success', [StripeController::class, 'success'])->name('success');
+
+Route::post('/tickets/refund/{id}', [TicketController::class, 'requestRefund'])->name('tickets.refund');
 
 Route::fallback(function () {
     return response()->view('events.erro', [], 404);

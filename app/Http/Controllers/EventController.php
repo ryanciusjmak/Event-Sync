@@ -71,6 +71,7 @@ class EventController extends Controller
             'city' => 'required',
             'private' => 'required',
             'description' => 'required',
+            'price' => 'nullable|numeric|min:0',
         ]);
 
         $event = new Event;
@@ -81,6 +82,7 @@ class EventController extends Controller
         $event->private = $request->private;
         $event->description = $request->description;
         $event->items = $request->items;
+        $event->price = $request->price ?? 0;
 
         // Image Upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -109,8 +111,13 @@ class EventController extends Controller
         $events = $user->events;
 
         $eventsAsParticipant = $user->eventsAsParticipant;
+        $ticketPurchases = $user->ticketPurchases;
 
-        return view('events.dashboard', ['events' => $events, 'eventsasparticipant' => $eventsAsParticipant] );
+        return view('events.dashboard', [
+            'events' => $events,
+            'eventsasparticipant' => $eventsAsParticipant,
+            'ticketPurchases' => $ticketPurchases  // Passa ingressos comprados para a view
+        ]);
     }
 
     public function destroy($id) {
@@ -145,6 +152,17 @@ class EventController extends Controller
     public function update(Request $request) {
 
         $data = $request->all();
+        
+        $request->validate([
+            'title' => 'required',
+            'date' => 'required',
+            'city' => 'required',
+            'private' => 'required',
+            'description' => 'required',
+            'price' => 'nullable|numeric|min:0',
+        ]);
+
+        
 
         // Image Upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -163,10 +181,14 @@ class EventController extends Controller
             }
         }
 
+         // Captura o valor do campo price
+        $data['price'] = $request->input('price');
+
+        // Atualiza o evento
         Event::findOrFail($request->id)->update($data);
 
-        return redirect('/dashboard')->with('msg', 'Event edited successfully!');
-    }
+        return redirect('/dashboard')->with('msg', 'Event edited    successfully!');
+}
 
     public function joinEvent($id) {
         $user = auth()->user();

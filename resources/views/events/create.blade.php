@@ -31,45 +31,49 @@
                 </select>
             </div>
             <div class="form-group">
-    <label class="mt-3" for="description">Add Infrastructure Items</label>
-    <div class="row">
-        <div class="col-5">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="items[]" value="Chairs" id="chairs" required>
-                <label class="form-check-label ms-2" for="chairs">Chairs</label>
+                <label class="mt-3" for="price">Event Price:</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Event Price">
             </div>
-        </div>
-        <div class="col-5">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="items[]" value="Stage" id="stage">
-                <label class="form-check-label ms-2" for="stage">Stage</label>
-            </div>
-        </div>
-        <div class="col-5">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="items[]" value="Open Food" id="open-food">
-                <label class="form-check-label ms-2" for="open-food">Open Food</label>
-            </div>
-        </div>
-        <div class="col-5">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="items[]" value="Free beer" id="free-beer">
-                <label class="form-check-label ms-2" for="free-beer">Free Beer</label>
-            </div>
-        </div>
-        <div class="col-5">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="items[]" value="Gifts" id="gifts">
-                <label class="form-check-label ms-2" for="gifts">Gifts</label>
-            </div>
-        </div>
-    </div>
-</div>
             <div class="form-group">
-                <label class="mt-3 " for="image">Add Photo</label>
-                <input type="file" class="form-control-file mt-3 ms-2" id="image" name="image"> 
+                <label class="mt-3" for="description">Add Infrastructure Items</label>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="items[]" value="Chairs" id="chairs">
+                            <label class="form-check-label ms-2" for="chairs">Chairs</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="items[]" value="Stage" id="stage">
+                            <label class="form-check-label ms-2" for="stage">Stage</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="items[]" value="Open Food" id="open-food">
+                            <label class="form-check-label ms-2" for="open-food">Open Food</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="items[]" value="Free beer" id="free-beer">
+                            <label class="form-check-label ms-2" for="free-beer">Free Beer</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="items[]" value="Gifts" id="gifts">
+                            <label class="form-check-label ms-2" for="gifts">Gifts</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="text-center"> 
+            <div class="form-group">
+                <label class="mt-3" for="image">Add Photo</label>
+                <input type="file" class="form-control-file mt-3 ms-2" id="image" name="image">
+            </div>
+            <div class="text-center">
                 <input type="submit" class="btn btn-primary mt-3" value="Create Event" id="create-button">
             </div>
         </form>

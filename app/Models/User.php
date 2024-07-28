@@ -19,7 +19,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use Billable;
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -62,12 +62,18 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function events() {
+    public function events()
+    {
         return $this->hasMany(Event::class);
     }
 
     public function eventsAsParticipant()
     {
         return $this->belongsToMany(Event::class, 'event_user', 'user_id', 'event_id');
+    }
+
+    public function ticketPurchases()
+    {
+        return $this->hasMany(TicketPurchase::class);
     }
 }
