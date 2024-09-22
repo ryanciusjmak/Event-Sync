@@ -13,8 +13,10 @@
             </div>
             <div class="form-group">
                 <label class="mt-3" for="city">City:</label>
-                <input type="text" class="form-control" id="city" name="city" placeholder="Event's place" required>
+                <input type="text" class="form-control" id="city" name="city" onblur="getCoordinates()" placeholder="Event's place" required>
             </div>
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
             <div class="form-group">
                 <label class="mt-3" for="date">Date:</label>
                 <input type="date" class="form-control" id="date" name="date" required>
@@ -82,4 +84,5 @@
 
 @section('scripts')
     <script src="{{ asset('js/disableSubmit.js') }}"></script>
+    <script src="{{ asset('js/create-event.js') }}"></script>
 @endsection

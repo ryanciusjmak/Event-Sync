@@ -10,12 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" href="{{ asset('frozen-orb-svgrepo-com.svg') }}" type="image/png">
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
-
-    <script src="/js/script.js"></script>
-    <script src="/js/disableSubmit.js"></script>
 </head>
 
 <body>
@@ -23,6 +20,11 @@
         <div class="spinner"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/js/maps.js" defer></script>
+    <script src="/js/create-event.js" defer></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/disableSubmit.js"></script>
     <script>
         $(document).ready(function() {
             $(window).on('load', function() {
@@ -49,6 +51,10 @@
                     </li>
                     <li class="nav-item">
                         <a href="/events/contact" class="nav-link">Contact</a>
+                    </li>
+                    <!-- Link para o Fórum -->
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Forum</a>
                     </li>
                     @auth
                     <li class="nav-item">

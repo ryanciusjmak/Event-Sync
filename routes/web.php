@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\ForumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,16 +36,20 @@ Route::get('/dashboard', [EventController::class, 'dashboard'])->name('dashboard
         'verified',
     ]);
 
+Route::get('/maps', [EventController::class, 'dashboardData'])->name('maps');
+
 Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
 
 Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->middleware('auth');
-
 
 Route::post('/session', [StripeController::class, 'session'])->name('session')->middleware('auth');
 
 Route::get('/success', [StripeController::class, 'success'])->name('success');
 
 Route::post('/tickets/refund/{id}', [TicketController::class, 'requestRefund'])->name('tickets.refund');
+
+
+
 
 Route::fallback(function () {
     return response()->view('events.erro', [], 404);

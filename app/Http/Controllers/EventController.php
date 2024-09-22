@@ -27,7 +27,7 @@ class EventController extends Controller
         foreach ($events as $event) {
             $event->participant_count = $event->users()->count();
         }
-        
+
         $eventCount = $events->count();
 
         return view('welcome', ['events' => $events, 'search' => $search, 'eventCount' => $eventCount]);
@@ -83,7 +83,11 @@ class EventController extends Controller
             'private' => 'required',
             'description' => 'required',
             'price' => 'nullable|numeric|min:0',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
         ]);
+
+        $request->all();
 
         $event = new Event;
 
@@ -94,6 +98,9 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->items = $request->items;
         $event->price = $request->price ?? 0;
+        $event->latitude = $request->latitude;
+        $event->longitude = $request->longitude;
+        
 
         // Image Upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -132,6 +139,13 @@ class EventController extends Controller
         ]);
     }
 
+    public function dashboardData()
+    {
+        $events = Event::select('title', 'city', 'latitude', 'longitude')->get();
+
+        return view('maps', compact('events'));
+    }
+
     public function destroy($id)
     {
         try {
@@ -164,46 +178,49 @@ class EventController extends Controller
     }
 
     public function update(Request $request)
-    {
+{
+    // Valida os dados recebidos
+    $request->validate([
+        'title' => 'required',
+        'date' => 'required',
+        'city' => 'required',
+        'private' => 'required',
+        'description' => 'required',
+        'price' => 'nullable|numeric|min:0',
+        'latitude' => 'nullable|numeric',
+        'longitude' => 'nullable|numeric',
+        'items' => 'nullable|string',
+    ]);
 
-        $data = $request->all();
+    // Prepara os dados para atualização
+    $data = $request->all();
 
-        $request->validate([
-            'title' => 'required',
-            'date' => 'required',
-            'city' => 'required',
-            'private' => 'required',
-            'description' => 'required',
-            'price' => 'nullable|numeric|min:0',
-        ]);
+    // Processa o upload da imagem
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        $requestImage = $request->image;
+        $extension = $requestImage->extension();
+        $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-
-
-        // Image Upload
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $requestImage = $request->image;
-            $extension = $requestImage->extension();
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-
-            $requestImage->move(public_path('img/events'), $imageName);
-            $data['image'] = $imageName;
-        } else {
-            // Verifica se a imagem já existe no evento
-            $existingEvent = Event::findOrFail($request->id);
-            if (!$existingEvent->image) {
-                // Define uma imagem padrão
-                $data['image'] = 'default_image.jpg';
-            }
+        $requestImage->move(public_path('img/events'), $imageName);
+        $data['image'] = $imageName;
+    } else {
+        // Verifica se a imagem já existe no evento e define uma imagem padrão se necessário
+        $existingEvent = Event::findOrFail($request->id);
+        if (!$existingEvent->image) {
+            $data['image'] = 'default_image.jpg';
         }
-
-        // Captura o valor do campo price
-        $data['price'] = $request->input('price');
-
-        // Atualiza o evento
-        Event::findOrFail($request->id)->update($data);
-
-        return redirect('/dashboard')->with('msg', 'Event edited    successfully!');
     }
+
+    // Define valor padrão para 'items' se não estiver presente
+    if (!isset($data['items'])) {
+        $data['items'] = ''; // Ou um valor padrão apropriado
+    }
+
+    // Atualiza o evento
+    Event::findOrFail($request->id)->update($data);
+
+    return redirect('/dashboard')->with('msg', 'Event edited successfully!');
+}
 
     public function joinEvent($id)
     {

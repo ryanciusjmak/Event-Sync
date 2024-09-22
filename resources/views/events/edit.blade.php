@@ -49,4 +49,6 @@
 
 @section('scripts')
     <script src="{{ asset('js/disableSubmit.js') }}"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ asset('js/map.js') }}"></script>
 @endsection
