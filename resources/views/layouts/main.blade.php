@@ -25,7 +25,7 @@
     <script src="/js/create-event.js" defer></script>
     <script src="/js/script.js"></script>
     <script src="/js/disableSubmit.js"></script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $(window).on('load', function() {
                 $('#loading').fadeOut();
@@ -35,7 +35,7 @@
                 $('#loading').fadeIn();
             });
         });
-    </script>
+    </script> --}}
     <header>
         <nav class="navbar-expand-lg">
             <div class="collapse navbar-collapse" id="navbar">

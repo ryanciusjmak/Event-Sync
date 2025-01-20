@@ -7,7 +7,8 @@
 <div id="search-container" class="col-md-12">
     <h1>Search for an event</h1>
     <form action="/" method="GET">
-        <input type="text" id="search" name="search" class="form-control" placeholder="Search...">
+        
+        <div id="search-div"><input type="text" id="search" name="search" class="form-control" placeholder="Search..."></div>
     </form>
 </div>
 <div id="events-container" class="col-md-10 mx-auto">

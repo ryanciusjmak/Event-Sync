@@ -68,6 +68,7 @@
 @media (max-width: 576px) {
     #events-container .card {
         flex: 1 1 100%; /* 1 card por linha em telas menores */
+        margin-top: 10px;
         max-width: 100%;
     }
 }

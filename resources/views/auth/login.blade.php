@@ -27,6 +27,15 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
+            <div class="flex justify-center mt-4 space-x-4">
+                    <p class="ms-2 text-sm text-gray-600 dark:text-gray-400">Or login with:</p>
+            </div>
+
+            <div class="flex justify-center mt-1 space-x-1">
+                <a href="{{ route('socialite.redirect', 'google') }}" class="btn btn-primary py-2 px-4">Login com Google</a>
+                <a href="{{ route('socialite.redirect', 'github') }}" class="btn btn-dark py-2 px-4">Login com GitHub</a>
+            </div>
+
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />

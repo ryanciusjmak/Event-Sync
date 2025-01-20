@@ -76,4 +76,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(TicketPurchase::class);
     }
+
+    public static function deleteUser($id)
+    {
+        $user = self::find($id);
+        if ($user) {
+            $user->delete();
+        }
+    }
 }
