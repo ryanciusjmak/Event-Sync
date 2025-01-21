@@ -8,6 +8,7 @@ use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ForumController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,13 +51,16 @@ Route::get('/success', [StripeController::class, 'success'])->name('success');
 
 Route::post('/tickets/refund/{id}', [TicketController::class, 'requestRefund'])->name('tickets.refund');
 
-
-
-
 Route::get('/auth/{provider}/redirect', [SocialiteController::class, 'redirect'])->name('socialite.redirect');
+
 Route::get('/auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('socialite.callback');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/my-account', [AccountController::class, 'myAccount'])->name('account.profile');
+    Route::put('/my-account/update', [AccountController::class, 'updateProfile'])->name('account.updateProfile');
+});
 
+Route::get('/my-account/settings-profile', [EventController::class, 'settingsprofile'])->middleware('auth');
 
 Route::fallback(function () {
     return response()->view('events.erro', [], 404);

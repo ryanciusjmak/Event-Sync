@@ -49,6 +49,12 @@ class EventController extends Controller
     }
 
 
+    public function settingsprofile()
+{
+    $user = auth()->user(); // Obtém o usuário autenticado
+    return view('account.settings-profile', compact('user')); // Passa o usuário para a view
+}
+
     public function show($id)
     {
         try {

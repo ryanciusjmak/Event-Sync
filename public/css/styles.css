@@ -65,20 +65,20 @@ header {
 }
 
 /* navbar */
-#navbar img {
-  width: 40px;
-}
-
-#navbar {
+#navs {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #121212;
+  background-color: #000000;
   padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #navbar .navbar-brand {
   margin-left: 20px;
+  color: #ff0000;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 #navbar ul {
@@ -88,22 +88,66 @@ header {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex-grow: 1;
-  justify-content: center;
 }
 
 #navbar ul li {
-  margin: 0 25px;
+  margin: 0 20px;
 }
 
 #navbar ul li a {
   color: white;
   text-decoration: none;
   font-size: 16px;
+  transition: color 0.3s ease;
 }
 
-#navbar a:hover {
+#navbar ul li a:hover {
   color: #ff0000;
+}
+
+#navbar .nav-item.dropdown {
+  position: relative;
+}
+
+#navbar .nav-item img {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  margin-right: 5px;
+}
+
+#navbar .nav-item .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #343a40;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  padding: 10px 0;
+}
+
+#navbar .nav-item .dropdown-menu .dropdown-item {
+  color: #f8f9fa;
+  padding: 10px 20px;
+  text-decoration: none;
+  display: block;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+#navbar .nav-item .dropdown-menu .dropdown-item:hover {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+#navbar .nav-item .dropdown-menu form {
+  margin: 0;
+}
+
+#navbar .nav-item .dropdown-menu form .dropdown-item {
+  cursor: pointer;
 }
 
 /* Search Container */
@@ -553,6 +597,37 @@ table.custom-table td {
   background-color: #e60000;
 }
 
+
+/* Profile */
+
+#image-profile{
+  object-fit: cover;
+  margin: 0 auto;
+  display: block; 
+  margin-top: 20px;
+}
+
+.master-card-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.profile-settings{}
+
+.profile-card {
+  background-color: #414040;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px;
+  
+  margin: 0.5%;
+  box-shadow: 0 8px 16px rgba(116, 18, 18, 0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
 
 /* footer */

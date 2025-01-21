@@ -13,7 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "*",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "*",
+        "livewire/livewire": "^3.0",
         "mercadopago/dx-php": "^2.6"
     },
     "require-dev": {
