@@ -69,7 +69,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #000000;
+  background-color: #121212;
   padding: 10px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -600,14 +600,14 @@ table.custom-table td {
 
 /* Profile */
 
-#image-profile{
+#image-profile {
   object-fit: cover;
   margin: 0 auto;
-  display: block; 
+  display: block;
   margin-top: 20px;
 }
 
-.master-card-profile{
+.master-card-profile {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -615,18 +615,80 @@ table.custom-table td {
   margin-top: 50px;
 }
 
-.profile-settings{}
+.profile-settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Centraliza verticalmente */
+}
+
+.tittle-profile, .form-profile {
+  width: 100%; /* Adapta-se ao conteúdo */
+  max-width: 700px; /* Define um limite para evitar que fique grande demais */
+  border-radius: 9px;
+}
+
+.tittle-profile {
+  text-align: center;
+  background-color: #b33b3b;
+  color: white;
+  padding: 2px; /* Adiciona espaço interno */
+}
+
+.form-profile {
+  background-color: #414040;
+  border-radius: 7px;
+  padding: 20px; /* Adiciona espaçamento interno ao form */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Adiciona sombra */
+}
 
 .profile-card {
   background-color: #414040;
   color: #ffffff;
   border-radius: 10px;
   padding: 10px;
-  width: 300px;
-  
-  margin: 0.5%;
-  box-shadow: 0 8px 16px rgba(116, 18, 18, 0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
+  width: 400px;
+}
+
+.form-profile .form-group {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.form-profile label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-profile input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: white;
+}
+
+.form-profile input[type="file"] {
+  padding: 5px;
+}
+
+.form-profile button {
+  width: 100%;
+  padding: 10px;
+  background-color: #b33b3b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-profile button:hover {
+  background-color: #ff0000;
 }
 
 

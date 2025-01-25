@@ -24,19 +24,26 @@
     <script src="/js/disableSubmit.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/scroll.js') }}"></script>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navs">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navs">
             <div class="container-fluid">
+                <!-- Logotipo à esquerda -->
                 <a href="/" class="navbar-brand">
                     <img src="/img/frozen-orb-svgrepo-com.svg" alt="Logo" width="40">
                 </a>
+        
+                <!-- Botão para dispositivos móveis -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
+        
+                <!-- Conteúdo da navbar -->
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <!-- Links no centro -->
+                    <ul class="navbar-nav mx-auto">
                         <li class="nav-item">
                             <a href="/" class="nav-link">Events</a>
                         </li>
@@ -49,26 +56,26 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">Forum</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/dashboard" class="nav-link">My events</a>
+                        </li>
                     </ul>
+        
+                    <!-- Foto de perfil ou links de login/registro -->
                     <ul class="navbar-nav">
                         @auth
-                            <li class="nav-item">
-                                <a href="/dashboard" class="nav-link">My events</a>
-                            </li>
-
-                            <!-- Foto de Perfil com Dropdown -->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     @if(auth()->check() && auth()->user()->profile_picture)
-                                        <img src="{{ asset('uploads/profile_pictures/' . auth()->user()->profile_picture) }}" alt="Foto de Perfil"
-                                            class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
+                                        <img src="{{ asset('uploads/profile_pictures/' . auth()->user()->profile_picture) }}"
+                                            alt="Foto de Perfil" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
                                     @else
                                         <img src="{{ asset('uploads/profile_pictures/picture_user.jpg') }}" alt="Foto de Perfil"
                                             class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover;">
                                     @endif
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                     <li><a class="dropdown-item" href="/my-account">Meu Perfil</a></li>
                                     <li>
                                         <form action="/logout" method="POST" class="m-0">
