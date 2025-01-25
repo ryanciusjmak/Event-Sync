@@ -155,12 +155,18 @@ class EventController extends Controller
     public function destroy($id)
     {
         try {
-            Event::findOrFail($id)->delete();
+            // Encontrar o evento
+            $event = Event::findOrFail($id);
+            // Remover os registros relacionados na tabela event_user
+            $event->users()->detach();
+            // Excluir o evento
+            $event->delete();
+        
             return redirect('/dashboard')->with('msg', 'Event deleted successfully!');
         } catch (ModelNotFoundException $e) {
-            return response()->view('events.erro', [], 404);
-        } catch (NotFoundHttpException $e) {
-            return response()->view('events.erro', [], 404);
+            return redirect('/dashboard')->with('error', 'Event not found.');
+        } catch (\Exception $e) {
+            return redirect('/dashboard')->with('error', 'An error occurred while deleting the event.');
         }
     }
 
